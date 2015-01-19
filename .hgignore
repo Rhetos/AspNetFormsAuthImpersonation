@@ -1,0 +1,50 @@
+# Ignore Hg backup files
+syntax: glob
+*.orig
+*.rej
+
+# Ignore Office backup files
+~$*
+
+# Ignore Visual Studio files
+syntax: glob
+*.obj
+*.exe
+*.dll
+*.pdb
+*.user
+*.aps
+*.pch
+*.vspscc
+*_i.c
+*_p.c
+*.ncb
+*.suo
+*.tlb
+*.tlh
+*.bak
+*.cache
+*.ilk
+*.log
+*.lib
+*.sbr
+*.scc
+[Bb]in
+[Dd]ebug*/
+[Oo]bj/
+[Rr]elease*/
+_ReSharper*/
+*.ReSharper
+[Tt]est[Rr]esult*
+[Bb]uild[Ll]og.*
+*.[Pp]ublish.xml
+[Tt]humbs.db
+
+# NuGet Packages Directory
+packages
+
+# Rhetos build results and user-specific files
+syntax: glob
+RhetosSourcePath.txt
+*.zip
+Plugins/ForDeployment/
