@@ -4,8 +4,8 @@
 @ECHO Target folder = [%1]
 @ECHO $(ConfigurationName) = [%2]
 
-XCOPY /Y/D/R Plugins\Plugins\AspNetFormsAuthImpersonation\bin\%2\Plugins\AspNetFormsAuthImpersonation.dll %1 || GOTO Error1
-XCOPY /Y/D/R Plugins\Plugins\AspNetFormsAuthImpersonation\bin\%2\Plugins\AspNetFormsAuthImpersonation.pdb %1 || GOTO Error1
+XCOPY /Y/D/R Plugins\Rhetos.AspNetFormsAuthImpersonation\bin\%2\Rhetos.AspNetFormsAuthImpersonation.dll %1 || GOTO Error1
+XCOPY /Y/D/R Plugins\Rhetos.AspNetFormsAuthImpersonation\bin\%2\Rhetos.AspNetFormsAuthImpersonation.pdb %1 || GOTO Error1
 
 @POPD
 

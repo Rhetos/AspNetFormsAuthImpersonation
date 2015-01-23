@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1744E759-8828-46C9-9BB9-3F52E3B6E0BF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Rhetos.AspNetFormsAuthImpersonation</RootNamespace>
+    <AssemblyName>Rhetos.AspNetFormsAuthImpersonation</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac">
+      <HintPath>..\..\Packages\Rhetos\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Integration.Wcf">
+      <HintPath>..\..\Packages\Rhetos\Autofac.Integration.Wcf.dll</HintPath>
+    </Reference>
+    <Reference Include="Rhetos.AspNetFormsAuth">
+      <HintPath>..\..\Packages\Rhetos\Rhetos.AspNetFormsAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Rhetos.Dom.DefaultConcepts, Version=0.9.22.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Packages\Rhetos\Rhetos.Dom.DefaultConcepts.dll</HintPath>
+    </Reference>
+    <Reference Include="Rhetos.Dom.DefaultConcepts.Interfaces, Version=0.9.22.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Packages\Rhetos\Rhetos.Dom.DefaultConcepts.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Rhetos.Dsl.Interfaces, Version=0.9.22.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Packages\Rhetos\Rhetos.Dsl.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Rhetos.Extensibility, Version=0.9.22.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Packages\Rhetos\Rhetos.Extensibility.dll</HintPath>
+    </Reference>
+    <Reference Include="Rhetos.Extensibility.Interfaces, Version=0.9.22.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Packages\Rhetos\Rhetos.Extensibility.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Rhetos.Interfaces">
+      <HintPath>..\..\Packages\Rhetos\Rhetos.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Rhetos.Logging.Interfaces, Version=0.9.22.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Packages\Rhetos\Rhetos.Logging.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Rhetos.Processing.Interfaces, Version=0.9.22.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Packages\Rhetos\Rhetos.Processing.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Rhetos.Security">
+      <HintPath>..\..\Packages\Rhetos\Rhetos.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Rhetos.Security.Interfaces">
+      <HintPath>..\..\Packages\Rhetos\Rhetos.Security.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Rhetos.Utilities">
+      <HintPath>..\..\Packages\Rhetos\Rhetos.Utilities.dll</HintPath>
+    </Reference>
+    <Reference Include="Rhetos.Web">
+      <HintPath>..\..\Packages\Rhetos\Rhetos.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Activation" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AspNetImpersonationUserInfo.cs" />
+    <Compile Include="ImpersonationServiceInitializer.cs" />
+    <Compile Include="AutofacModuleConfiguration.cs" />
+    <Compile Include="HomePageSnippet.cs" />
+    <Compile Include="ImpersonationDatabaseInitializer.cs" />
+    <Compile Include="ImpersonationService.cs" />
+    <Compile Include="ImpersonationServiceClaims.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

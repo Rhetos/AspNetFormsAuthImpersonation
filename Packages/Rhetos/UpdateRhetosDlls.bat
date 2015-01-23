@@ -9,21 +9,21 @@ DEL /Q /F "*.dll" || GOTO Error1
 DEL /Q /F "*.xml" || GOTO Error1
 DEL /Q /F "*.pdb" || GOTO Error1
 
-@CALL :SafeCopy Source\Rhetos.Compiler.Interfaces\bin\Debug\Rhetos.Compiler.Interfaces.??? || GOTO Error1
-@CALL :SafeCopy Source\Rhetos.Extensibility.Interfaces\bin\Debug\Rhetos.Extensibility.Interfaces.??? || GOTO Error1
+@CALL :SafeCopy External\Autofac\Autofac.dll || GOTO Error1
+@CALL :SafeCopy External\Autofac\Autofac.Integration.Wcf.dll || GOTO Error1
+@CALL :SafeCopy AspNetFormsAuth\Plugins\Rhetos.AspNetFormsAuth\bin\Debug\Rhetos.AspNetFormsAuth.??? || GOTO Error1
+@CALL :SafeCopy CommonConcepts\Plugins\Rhetos.Dom.DefaultConcepts.Interfaces\bin\Debug\Rhetos.Dom.DefaultConcepts.Interfaces.??? || GOTO Error1
+@CALL :SafeCopy CommonConcepts\Plugins\Rhetos.Dom.DefaultConcepts\bin\Debug\Rhetos.Dom.DefaultConcepts.??? || GOTO Error1
 @CALL :SafeCopy Source\Rhetos.Dsl.Interfaces\bin\Debug\Rhetos.Dsl.Interfaces.??? || GOTO Error1
-@CALL :SafeCopy Source\Rhetos.Dom.Interfaces\bin\Debug\Rhetos.Dom.Interfaces.??? || GOTO Error1
-@CALL :SafeCopy Source\Rhetos.Utilities\bin\Debug\Rhetos.Utilities.??? || GOTO Error1
 @CALL :SafeCopy Source\Rhetos.Extensibility\bin\Debug\Rhetos.Extensibility.??? || GOTO Error1
+@CALL :SafeCopy Source\Rhetos.Extensibility.Interfaces\bin\Debug\Rhetos.Extensibility.Interfaces.??? || GOTO Error1
 @CALL :SafeCopy Source\Rhetos.Interfaces\bin\Debug\Rhetos.Interfaces.??? || GOTO Error1
 @CALL :SafeCopy Source\Rhetos.Logging.Interfaces\bin\Debug\Rhetos.Logging.Interfaces.??? || GOTO Error1
 @CALL :SafeCopy Source\Rhetos.Processing.Interfaces\bin\Debug\Rhetos.Processing.Interfaces.??? || GOTO Error1
+@CALL :SafeCopy Source\Rhetos.Security\bin\Debug\Rhetos.Security.??? || GOTO Error1
 @CALL :SafeCopy Source\Rhetos.Security.Interfaces\bin\Debug\Rhetos.Security.Interfaces.??? || GOTO Error1
-
-@CALL :SafeCopy CommonConcepts\Plugins\Rhetos.Dsl.DefaultConcepts\bin\Debug\Rhetos.Dsl.DefaultConcepts.??? || GOTO Error1
-@CALL :SafeCopy CommonConcepts\Plugins\Rhetos.Dom.DefaultConcepts.Interfaces\bin\Debug\Rhetos.Dom.DefaultConcepts.Interfaces.??? || GOTO Error1
-@CALL :SafeCopy CommonConcepts\Plugins\Rhetos.Dom.DefaultConcepts\bin\Debug\Rhetos.Dom.DefaultConcepts.??? || GOTO Error1
-@CALL :SafeCopy CommonConcepts\Plugins\Rhetos.Processing.DefaultCommands.Interfaces\bin\Debug\Rhetos.Processing.DefaultCommands.Interfaces.??? || GOTO Error1
+@CALL :SafeCopy Source\Rhetos.Utilities\bin\Debug\Rhetos.Utilities.??? || GOTO Error1
+@CALL :SafeCopy Source\Rhetos.Web\bin\Debug\Rhetos.Web.??? || GOTO Error1
 
 PowerShell.exe -Command "dir *.dll,*.exe | %%{gi $_.FullName} | select -Property Name, Length, @{Name=\"LastWriteTime\"; Expression={$_.LastWriteTime.ToString(\"yyyy-MM-dd HH:mm:ss\")}}, @{Name=\"FileVersion\"; Expression={$_.VersionInfo.FileVersion}} | fl | Out-File FileVersions.txt -Width 1000 -Encoding UTF8"
 @POPD
