@@ -1,10 +1,10 @@
-@REM HINT: SET THE FIRST ARGUMENT TO /NOPAUSE WHEN AUTOMATING THE BUILD.
 @SETLOCAL
-@PUSHD "%~dp0"
-
 @REM ///////////////////////////
-@SET NewVersion=0.9.0.1
+@SET NewVersion=1.0.0.1
 @REM \\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+@REM HINT: SET THE FIRST ARGUMENT TO /NOPAUSE WHEN AUTOMATING THE BUILD.
+@PUSHD "%~dp0"
 
 CALL InitRhetosSourcePath.bat /nopause || GOTO Error1
 CALL "%RhetosSourcePath%\ChangeRhetosPackageVersion.bat" . %NewVersion% || GOTO Error1
