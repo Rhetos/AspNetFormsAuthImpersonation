@@ -9,8 +9,8 @@ DEL /Q /F "*.dll" || GOTO Error1
 DEL /Q /F "*.xml" || GOTO Error1
 DEL /Q /F "*.pdb" || GOTO Error1
 
-@CALL :SafeCopy External\Autofac\Autofac.dll || GOTO Error1
-@CALL :SafeCopy External\Autofac\Autofac.Integration.Wcf.dll || GOTO Error1
+@CALL :SafeCopy Source\Rhetos\bin\Autofac.??? || GOTO Error1
+@CALL :SafeCopy Source\Rhetos\bin\Autofac.Integration.Wcf.??? || GOTO Error1
 @CALL :SafeCopy AspNetFormsAuth\Plugins\Rhetos.AspNetFormsAuth\bin\Debug\Rhetos.AspNetFormsAuth.??? || GOTO Error1
 @CALL :SafeCopy CommonConcepts\Plugins\Rhetos.Dom.DefaultConcepts.Interfaces\bin\Debug\Rhetos.Dom.DefaultConcepts.Interfaces.??? || GOTO Error1
 @CALL :SafeCopy CommonConcepts\Plugins\Rhetos.Dom.DefaultConcepts\bin\Debug\Rhetos.Dom.DefaultConcepts.??? || GOTO Error1

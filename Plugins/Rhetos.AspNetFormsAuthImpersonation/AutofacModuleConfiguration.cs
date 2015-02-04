@@ -19,7 +19,7 @@ namespace Rhetos.AspNetFormsAuthImpersonation
         {
             builder.RegisterType<ImpersonationService>().InstancePerLifetimeScope();
 
-            PluginsUtility.CheckOverride<IUserInfo, AspNetImpersonationUserInfo>(builder, typeof(AspNetUserInfo), typeof(WcfWindowsUserInfo));
+            Plugins.CheckOverride<IUserInfo, AspNetImpersonationUserInfo>(builder, typeof(AspNetUserInfo), typeof(WcfWindowsUserInfo));
             builder.RegisterType<AspNetImpersonationUserInfo>().As<IUserInfo>().InstancePerLifetimeScope();
 
             base.Load(builder);

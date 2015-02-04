@@ -41,7 +41,9 @@ _ReSharper*/
 [Tt]humbs.db
 
 # NuGet Packages Directory
+syntax: glob
 packages
+Packages
 
 # Rhetos build results and user-specific files
 syntax: glob
