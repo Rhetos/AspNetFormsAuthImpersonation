@@ -40,13 +40,12 @@ _ReSharper*/
 *.[Pp]ublish.xml
 [Tt]humbs.db
 
-# NuGet Packages Directory
+# NuGet
 syntax: glob
 packages
 Packages
+.nuget/NuGet.exe
 
-# Rhetos build results and user-specific files
+# Rhetos
 syntax: glob
 RhetosSourcePath.txt
-*.zip
-Plugins/ForDeployment/

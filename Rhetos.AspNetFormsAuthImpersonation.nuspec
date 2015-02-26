@@ -1,0 +1,23 @@
+﻿<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Rhetos.AspNetFormsAuthImpersonation</id>
+    <version>1.1.1.1</version>
+    <authors>Omega software</authors>
+    <owners>Omega software</owners>
+    <projectUrl>https://github.com/rhetos/rhetos</projectUrl>
+    <description>AspNetFormsAuthImpersonation is a package (a plugin module) for Rhetos development platform.
+      It extends AspNetFormsAuth package with user impersonation, allowing a user to log in as another user.</description>
+    <copyright>Copyright Omega software 2015</copyright>
+    <tags>Rhetos</tags>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="Rhetos, Version=0.9.25" />
+    </frameworkAssemblies>
+  </metadata>
+  <files>
+    <file src="Readme.md" target="" />
+    <file src="Resources\**\*" target="Resources" />
+    <file src="Plugins\Rhetos.AspNetFormsAuthImpersonation\bin\Debug\Rhetos.AspNetFormsAuthImpersonation.dll" target="Plugins" />
+    <file src="Plugins\Rhetos.AspNetFormsAuthImpersonation\bin\Debug\Rhetos.AspNetFormsAuthImpersonation.pdb" target="Plugins" />
+  </files>
+</package>

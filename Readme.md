@@ -3,7 +3,7 @@ AspNetFormsAuthImpersonation
 
 AspNetFormsAuthImpersonation is a package (a plugin module) for [Rhetos development platform](https://github.com/Rhetos/Rhetos).
 It extends [AspNetFormsAuth](https://github.com/Rhetos/Rhetos/tree/master/AspNetFormsAuth) package with **user impersonation**,
-allowing a user to logging in as another user.
+allowing a user to log in as another user.
 The impersonation information is perssited only in the standard authentication cookie (already used by AspNetFormsAuth).
 
 Contents:

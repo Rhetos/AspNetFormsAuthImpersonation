@@ -17,7 +17,7 @@ CALL "%VSTOOLS%\..\..\VC\vcvarsall.bat" x86 || GOTO Error1
 CALL Packages\Rhetos\UpdateRhetosDlls.bat /nopause || GOTO Error1
 
 IF EXIST Build.log DEL Build.log || GOTO Error1
-DevEnv.com Plugins\AspNetFormsAuthImpersonation.sln /rebuild %Config% /out Build.log || TYPE Build.log && GOTO Error1
+DevEnv.com AspNetFormsAuthImpersonation.sln /rebuild %Config% /out Build.log || TYPE Build.log && GOTO Error1
 
 @POPD
 
