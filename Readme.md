@@ -35,8 +35,13 @@ The following security claims are used in the impersonation web service:
 * `IncreasePermissions` - A user with this claim is allowed to **impersonate another user that has more permissions** than the original user.
   This claim is **not assigned** by defeault to the admin user. 
 
+### Simple administration GUI
+
+For testing and administration, a simple web GUI is available at the Rhetos server homepage under *AspNetFormsAuthImpersonation* header.
 
 ## Impersonation web service API
+
+The JSON service is available at URI `<rhetos server>/Resources/AspNetFormsAuthImperionation/Impersonation`, with the following methods.
 
 ### Impersonate
 
