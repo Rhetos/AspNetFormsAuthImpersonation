@@ -1,6 +1,6 @@
 @SETLOCAL
 @REM ///////////////////////////
-@SET NewVersion=1.1.1.1
+@SET NewVersion=1.3.0 alpha001
 @REM \\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 @REM HINT: SET THE FIRST ARGUMENT TO /NOPAUSE WHEN AUTOMATING THE BUILD.
