@@ -1,6 +1,7 @@
 @SETLOCAL
 @REM ///////////////////////////
-@SET NewVersion=1.3.0 alpha001
+@SET NewVersion=1.4.0 alpha001
+@REM SEPARATE THE PRE-RELEASE LABEL WITH A SPACE.
 @REM \\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 @REM HINT: SET THE FIRST ARGUMENT TO /NOPAUSE WHEN AUTOMATING THE BUILD.

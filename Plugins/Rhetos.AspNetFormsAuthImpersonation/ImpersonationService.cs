@@ -2,6 +2,7 @@
 using Rhetos.Dom.DefaultConcepts;
 using Rhetos.Logging;
 using Rhetos.Security;
+using Rhetos.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,25 +37,28 @@ namespace Rhetos.AspNetFormsAuthImpersonation
         private readonly ILogger _logger;
         private readonly Lazy<IAuthorizationManager> _authorizationManager;
         private readonly Lazy<GenericRepository<IPrincipal>> _principals;
-        private readonly Lazy<GenericRepository<IPermission>> _permissions;
+        private readonly Lazy<GenericRepository<IRolePermission>> _permissions;
         private readonly Lazy<GenericRepository<ICommonClaim>> _claims;
-        private readonly Lazy<AspNetFormsAuthorizationProvider> _authorizationProvider;
+        private readonly Lazy<IAuthorizationProvider> _authorizationProvider;
+        private readonly IUserInfo _userInfo;
 
         public ImpersonationService(
             ILogProvider logProvider,
             Lazy<AuthenticationService> authenticationService,
             Lazy<IAuthorizationManager> authorizationManager,
             Lazy<GenericRepository<IPrincipal>> principals,
-            Lazy<GenericRepository<IPermission>> permissions,
+            Lazy<GenericRepository<IRolePermission>> permissions,
             Lazy<GenericRepository<ICommonClaim>> claims,
-            Lazy<IAuthorizationProvider> authorizationProvider)
+            Lazy<IAuthorizationProvider> authorizationProvider,
+            IUserInfo userInfo)
         {
             _logger = logProvider.GetLogger(GetType().Name);
             _authorizationManager = authorizationManager;
             _principals = principals;
             _permissions = permissions;
             _claims = claims;
-            _authorizationProvider = new Lazy<AspNetFormsAuthorizationProvider>(() => (AspNetFormsAuthorizationProvider)authorizationProvider.Value);
+            _authorizationProvider = authorizationProvider;
+            _userInfo = userInfo;
         }
 
         [OperationContract]
@@ -91,9 +95,17 @@ namespace Rhetos.AspNetFormsAuthImpersonation
                     claim.Right, claim.Resource));
         }
 
+        class TempUserInfo : IUserInfo
+        {
+            public string UserName { get; set; }
+            public string Workstation { get; set; }
+            public bool IsUserRecognized { get { return true; } }
+            public string Report() { return UserName; }
+        }
+
         private void CheckImperionatedUserPermissions(string impersonatedUser)
         {
-            var impersonatedPrincipalId = _principals.Value
+            Guid impersonatedPrincipalId = _principals.Value
                 .Query(p => p.Name == impersonatedUser)
                 .Select(p => p.ID).SingleOrDefault();
 
@@ -108,32 +120,25 @@ namespace Rhetos.AspNetFormsAuthImpersonation
                 // The impersonatedUser must have subset of permissions of the impersonating user.
                 // It is not allowed to impersonate a user with more permissions then the impersonating user.
 
-                var currentRoles = _authorizationProvider.Value.GetUsersRoles(HttpContext.Current.User.Identity.Name);
-                var impersonatedRoles = _authorizationProvider.Value.GetUsersRoles(impersonatedUser);
+                var allClaims = _claims.Value.Query().Where(c => c.Active.Value).Select(c => new Claim(c.ClaimResource, c.ClaimRight)).ToList();
 
-                var currentClaims = _permissions.Value
-                    .Query(p => currentRoles.Contains(p.Role.ID))
-                    .Where(p => p.Claim.Active.Value)
-                    .Select(p => p.Claim.ID);
+                var impersonatedUserInfo = new TempUserInfo { UserName = impersonatedUser, Workstation = _userInfo.Workstation };
+                var impersonatedUserClaims = _authorizationProvider.Value.GetAuthorizations(impersonatedUserInfo, allClaims)
+                    .Zip(allClaims, (hasClaim, claim) => new { hasClaim, claim })
+                    .Where(c => c.hasClaim).Select(c => c.claim).ToList();
 
-                var surplusImpersonatedClaims = _permissions.Value
-                    .Query(p => impersonatedRoles.Contains(p.Role.ID) && !currentClaims.Contains(p.Claim.ID))
-                    .Where(p => p.Claim.Active.Value)
-                    .Select(p => p.Claim.ID)
-                    .ToList();
+                var surplusImpersonatedClaims = _authorizationProvider.Value.GetAuthorizations(_userInfo, impersonatedUserClaims)
+                    .Zip(impersonatedUserClaims, (hasClaim, claim) => new { hasClaim, claim })
+                    .Where(c => !c.hasClaim).Select(c => c.claim).ToList();
 
                 if (surplusImpersonatedClaims.Count() > 0)
                 {
-                    string sampleClaim = _claims.Value.Query(new[] { surplusImpersonatedClaims.First() })
-                        .Select(c => c.ClaimResource + "." + c.ClaimRight)
-                        .SingleOrDefault();
-
                     _logger.Info(
                         "User '{0}' is not allowed to impersonate '{1}' because the impersonated user has {2} more security claims (for example '{3}'). Increase the user's permissions or add '{4}' security claim.",
-                        HttpContext.Current.User.Identity.Name,
+                        _userInfo.UserName,
                         impersonatedUser,
                         surplusImpersonatedClaims.Count(),
-                        sampleClaim,
+                        surplusImpersonatedClaims.First().FullName,
                         ImpersonationServiceClaims.IncreasePermissionsClaim.FullName);
 
                     throw new UserException("You are not allowed to impersonate user '" + impersonatedUser + "'.", "See server log for more information.");

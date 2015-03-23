@@ -80,7 +80,7 @@ namespace Rhetos.AspNetFormsAuthImpersonation
         /// </summary>
         private Lazy<string> _impersonatedUser;
 
-        public AspNetImpersonationUserInfo(WindowsSecurity windowsSecurity)
+        public AspNetImpersonationUserInfo(IWindowsSecurity windowsSecurity)
         {
             _isUserRecognized = new Lazy<bool>(GetIsUserRecognized);
             _actualUser = new Lazy<string>(() => HttpContext.Current.User.Identity.Name);

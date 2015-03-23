@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>Rhetos.AspNetFormsAuthImpersonation</id>
-    <version>1.3.0-alpha001</version>
+    <version>1.4.0-alpha001</version>
     <authors>Omega software</authors>
     <owners>Omega software</owners>
     <projectUrl>https://github.com/rhetos/rhetos</projectUrl>
@@ -13,6 +13,9 @@
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="Rhetos, Version=0.9.28" />
     </frameworkAssemblies>
+    <dependencies>
+      <dependency id="Rhetos.AspNetFormsAuth" version="0.9.29" />
+    </dependencies>
   </metadata>
   <files>
     <file src="Readme.md" target="" />
