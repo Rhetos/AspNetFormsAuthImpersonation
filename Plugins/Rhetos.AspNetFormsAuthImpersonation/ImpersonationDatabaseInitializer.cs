@@ -25,7 +25,7 @@ namespace Rhetos.AspNetFormsAuthImpersonation
         public void Initialize()
         {
             // Admin role should already be created in AuthenticationDatabaseInitializer, see Dependencies property.
-            var adminRole = _repositories.Read<IRole>(role => role.Name == AuthenticationDatabaseInitializer.AdminRoleName).Single();
+            var adminRole = _repositories.Load<IRole>(role => role.Name == AuthenticationDatabaseInitializer.AdminRoleName).Single();
 
             foreach (var securityClaim in ImpersonationServiceClaims.GetDefaultAdminClaims())
             {
@@ -38,7 +38,7 @@ namespace Rhetos.AspNetFormsAuthImpersonation
                 permission.RoleID = adminRole.ID;
                 permission.ClaimID = commonClaim.ID;
                 permission.IsAuthorized = true;
-                _repositories.InsertOrUpdateReadId(permission, item => new { RoleID = item.Role.ID, ClaimID = item.Claim.ID }, item => item.IsAuthorized);
+                _repositories.InsertOrUpdateReadId(permission, item => new { item.RoleID, item.ClaimID }, item => item.IsAuthorized);
             }
         }
 

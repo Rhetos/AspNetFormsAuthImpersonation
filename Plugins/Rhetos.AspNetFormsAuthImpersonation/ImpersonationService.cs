@@ -120,7 +120,9 @@ namespace Rhetos.AspNetFormsAuthImpersonation
                 // The impersonatedUser must have subset of permissions of the impersonating user.
                 // It is not allowed to impersonate a user with more permissions then the impersonating user.
 
-                var allClaims = _claims.Value.Query().Where(c => c.Active.Value).Select(c => new Claim(c.ClaimResource, c.ClaimRight)).ToList();
+                var allClaims = _claims.Value.Query().Where(c => c.Active.Value)
+                    .Select(c => new { c.ClaimResource, c.ClaimRight }).ToList()
+                    .Select(c => new Claim(c.ClaimResource, c.ClaimRight)).ToList();
 
                 var impersonatedUserInfo = new TempUserInfo { UserName = impersonatedUser, Workstation = _userInfo.Workstation };
                 var impersonatedUserClaims = _authorizationProvider.Value.GetAuthorizations(impersonatedUserInfo, allClaims)
