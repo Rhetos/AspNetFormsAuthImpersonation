@@ -11,69 +11,69 @@ LastWriteTime : 2015-03-11 09:52:16
 FileVersion   : 3.0.1.0
 
 Name          : Rhetos.AspNetFormsAuth.dll
-Length        : 49664
-LastWriteTime : 2015-03-23 11:45:46
-FileVersion   : 0.9.29
+Length        : 48128
+LastWriteTime : 2015-08-17 14:57:34
+FileVersion   : 1.0.0
 
 Name          : Rhetos.Dom.DefaultConcepts.dll
-Length        : 285184
-LastWriteTime : 2015-03-23 11:45:43
-FileVersion   : 0.9.29
+Length        : 328192
+LastWriteTime : 2015-08-17 14:57:32
+FileVersion   : 1.0.0
 
 Name          : Rhetos.Dom.DefaultConcepts.Interfaces.dll
-Length        : 12800
-LastWriteTime : 2015-03-23 11:45:40
-FileVersion   : 0.9.29
+Length        : 15872
+LastWriteTime : 2015-08-17 14:57:29
+FileVersion   : 1.0.0
 
 Name          : Rhetos.Dsl.Interfaces.dll
 Length        : 28160
-LastWriteTime : 2015-03-23 11:45:37
-FileVersion   : 0.9.29
+LastWriteTime : 2015-08-17 14:57:27
+FileVersion   : 1.0.0
 
 Name          : Rhetos.Extensibility.dll
-Length        : 32768
-LastWriteTime : 2015-03-23 11:45:37
-FileVersion   : 0.9.29
+Length        : 32256
+LastWriteTime : 2015-08-17 14:57:27
+FileVersion   : 1.0.0
 
 Name          : Rhetos.Extensibility.Interfaces.dll
-Length        : 6144
-LastWriteTime : 2015-03-23 11:45:35
-FileVersion   : 0.9.29
+Length        : 6656
+LastWriteTime : 2015-08-17 14:57:26
+FileVersion   : 1.0.0
 
 Name          : Rhetos.Interfaces.dll
-Length        : 6656
-LastWriteTime : 2015-03-23 11:45:39
-FileVersion   : 0.9.29
+Length        : 7168
+LastWriteTime : 2015-08-17 14:57:30
+FileVersion   : 1.0.0
 
 Name          : Rhetos.Logging.Interfaces.dll
 Length        : 6656
-LastWriteTime : 2015-03-23 11:45:35
-FileVersion   : 0.9.29
+LastWriteTime : 2015-08-17 14:57:24
+FileVersion   : 1.0.0
 
 Name          : Rhetos.Processing.Interfaces.dll
 Length        : 8192
-LastWriteTime : 2015-03-23 11:45:39
-FileVersion   : 0.9.29
+LastWriteTime : 2015-08-17 14:57:28
+FileVersion   : 1.0.0
 
 Name          : Rhetos.Security.dll
-Length        : 25600
-LastWriteTime : 2015-03-23 11:45:41
-FileVersion   : 0.9.29
+Length        : 26112
+LastWriteTime : 2015-08-17 14:57:30
+FileVersion   : 1.0.0
 
 Name          : Rhetos.Security.Interfaces.dll
-Length        : 6144
-LastWriteTime : 2015-03-23 11:45:40
-FileVersion   : 0.9.29
+Length        : 6656
+LastWriteTime : 2015-08-17 14:57:29
+FileVersion   : 1.0.0
 
 Name          : Rhetos.Utilities.dll
-Length        : 70144
-LastWriteTime : 2015-03-23 11:45:36
-FileVersion   : 0.9.29
+Length        : 68608
+LastWriteTime : 2015-08-17 14:57:25
+FileVersion   : 1.0.0
 
 Name          : Rhetos.Web.dll
 Length        : 9216
-LastWriteTime : 2015-03-23 11:45:37
-FileVersion   : 0.9.29
+LastWriteTime : 2015-08-17 14:57:27
+FileVersion   : 1.0.0
 
 
 
