@@ -11,10 +11,10 @@
     <copyright>Copyright Omega software 2015</copyright>
     <tags>Rhetos</tags>
     <frameworkAssemblies>
-      <frameworkAssembly assemblyName="Rhetos, Version=1.0.0-alpha004" />
+      <frameworkAssembly assemblyName="Rhetos, Version=1.0.0-alpha160317" />
     </frameworkAssemblies>
     <dependencies>
-      <dependency id="Rhetos.AspNetFormsAuth" version="1.0.0-alpha004" />
+      <dependency id="Rhetos.AspNetFormsAuth" version="1.0.0-alpha160317" />
     </dependencies>
   </metadata>
   <files>

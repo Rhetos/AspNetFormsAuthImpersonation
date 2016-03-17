@@ -90,9 +90,9 @@ namespace Rhetos.AspNetFormsAuthImpersonation
         {
             bool allowedImpersonate = _authorizationManager.Value.GetAuthorizations(new[] { claim }).Single();
             if (!allowedImpersonate)
-                throw new UserException(string.Format(
+                throw new UserException(
                     "You are not authorized for action '{0}' on resource '{1}'. The required security claim is not set.",
-                    claim.Right, claim.Resource));
+                    new[] { claim.Right, claim.Resource }, null, null);
         }
 
         class TempUserInfo : IUserInfo
@@ -112,7 +112,8 @@ namespace Rhetos.AspNetFormsAuthImpersonation
             // This function must be called after the user is authenticated and authorized (see CheckCurrentUserClaim),
             // otherwise the provided error information would be a security issue.
             if (impersonatedPrincipalId == default(Guid))
-                throw new UserException("User '" + impersonatedUser + "' is not registered.");
+                throw new UserException("User '{0}' is not registered.",
+                    new[] { impersonatedUser }, null, null);
 
             var allowIncreasePermissions = _authorizationManager.Value.GetAuthorizations(new[] { ImpersonationServiceClaims.IncreasePermissionsClaim }).Single();
             if (!allowIncreasePermissions)
@@ -143,7 +144,8 @@ namespace Rhetos.AspNetFormsAuthImpersonation
                         surplusImpersonatedClaims.First().FullName,
                         ImpersonationServiceClaims.IncreasePermissionsClaim.FullName);
 
-                    throw new UserException("You are not allowed to impersonate user '" + impersonatedUser + "'.", "See server log for more information.");
+                    throw new UserException("You are not allowed to impersonate user '{0}'.",
+                        new[] { impersonatedUser }, "See server log for more information.", null);
                 }
             }
         }
