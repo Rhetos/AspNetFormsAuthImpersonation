@@ -1,6 +1,6 @@
 @SETLOCAL
 @REM ///////////////////////////
-@SET NewVersion=2.0.0 alpha005
+@SET NewVersion=2.0.1 alpha001
 @REM SEPARATE THE PRE-RELEASE LABEL WITH A SPACE.
 @REM \\\\\\\\\\\\\\\\\\\\\\\\\\\
 
