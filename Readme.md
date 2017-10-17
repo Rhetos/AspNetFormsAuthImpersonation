@@ -91,21 +91,3 @@ To find out if the current user impersonates another, use the following code sni
         }
         return null;
     }
-
-
-## Building binaries from source
-
-### Prerequisites
-
-* Before building this project please download [Rhetos source](https://github.com/Rhetos/Rhetos),
-  compile it (using `Build.bat`) and enter the source folder's full path in `RhetosSourcePath.txt`.
-
-### Build
-
-1. Build this package by executing `Build.bat`.
-
-### Create installation package
-
-1. Edit `ChangeVersion.bat` to set the new version number, and execute it.
-2. Execute `Build.bat`.
-3. Execute `CreatePackage.bat`. It creates an installation package (.zip) in the parent directory.

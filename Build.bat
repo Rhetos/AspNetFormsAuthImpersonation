@@ -1,33 +1,22 @@
-@REM HINT: SET THE SECOND ARGUMENT TO /NOPAUSE WHEN AUTOMATING THE BUILD.
+@REM HINT: SET SECOND ARGUMENT TO /NOPAUSE WHEN AUTOMATING THE BUILD.
 @SETLOCAL
-@PUSHD "%~dp0"
 
 @SET Config=%1%
 @IF [%1] == [] SET Config=Debug
 
-@IF DEFINED VisualStudioVersion GOTO SkipVcvarsall
-@SET VSTOOLS=
-@IF "%VS100COMNTOOLS%" NEQ "" SET VSTOOLS=%VS100COMNTOOLS%
-@IF "%VS110COMNTOOLS%" NEQ "" SET VSTOOLS=%VS110COMNTOOLS%
-@IF "%VS120COMNTOOLS%" NEQ "" SET VSTOOLS=%VS120COMNTOOLS%
-CALL "%VSTOOLS%\..\..\VC\vcvarsall.bat" x86 || GOTO Error1
+IF NOT DEFINED VisualStudioVersion CALL "%VS140COMNTOOLS%VsDevCmd.bat" || ECHO ERROR: Cannot find Visual Studio 2015, missing VS140COMNTOOLS variable. && GOTO Error0
 @ECHO ON
-:SkipVcvarsall
 
-CALL Packages\Rhetos\UpdateRhetosDlls.bat /nopause || GOTO Error1
-
-IF EXIST Build.log DEL Build.log || GOTO Error1
-DevEnv.com AspNetFormsAuthImpersonation.sln /rebuild %Config% /out Build.log || TYPE Build.log && GOTO Error1
-
-@POPD
+NuGet restore || GOTO Error0
+MSBuild /target:rebuild /p:Configuration=%Config% /verbosity:minimal /fileLogger || GOTO Error0
+NuGet.exe pack -o .. || GOTO Error0
 
 @REM ================================================
-:Done
+
 @ECHO.
 @ECHO %~nx0 SUCCESSFULLY COMPLETED.
 @EXIT /B 0
-:Error1
-@POPD
+
 :Error0
 @ECHO.
 @ECHO %~nx0 FAILED.
