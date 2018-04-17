@@ -1,7 +1,7 @@
 # AspNetFormsAuthImpersonation
 
 AspNetFormsAuthImpersonation is a package (a plugin module) for [Rhetos development platform](https://github.com/Rhetos/Rhetos).
-It extends [AspNetFormsAuth](https://github.com/Rhetos/Rhetos/tree/master/AspNetFormsAuth) package with **user impersonation**,
+It extends [AspNetFormsAuth](https://github.com/Rhetos/AspNetFormsAuth) package with **user impersonation**,
 allowing a user to log in as another user.
 The impersonation information is persisted only in the standard authentication cookie (already used by AspNetFormsAuth).
 
@@ -25,11 +25,11 @@ Add "Rhetos.AspNetFormsAuthImpersonation" to the package list in the server's *R
 ### Configuring user's permissions
 
 All claims related to the impersonation service have resource=`AspNetFormsAuth.Impersonation`.
-Admin user (see [AspNetFormsAuth](https://github.com/Rhetos/Rhetos/tree/master/AspNetFormsAuth)) has all the necessary permissions (claims) for all authentication service methods by default.
+Admin user (see [AspNetFormsAuth](https://github.com/Rhetos/AspNetFormsAuth)) has all the necessary permissions (claims) for all authentication service methods by default.
 
 The following security claims are used in the impersonation web service:
 
-* `Impersonate` - A user with this claim is allowed to impersonate another user (execute [`Impersonate`](#impersonate) web method).
+* `Impersonate` - A user with this claim is allowed to impersonate another user (execute the `Impersonate` web method).
 * `IncreasePermissions` - A user with this claim is allowed to **impersonate another user that has more permissions** than the original user.
   This claim is **not assigned** by default to the admin user.
 
@@ -46,7 +46,7 @@ The JSON service is available at URI `<rhetos server>/Resources/AspNetFormsAuthI
 Activates impersonation for the currently logged in user to act as the given `ImpersonatedUser`.
 
 * Interface: `(string ImpersonatedUser) -> void`
-* Requires `Impersonate` [security claim](#configuring-user-s-permissions).
+* Requires `Impersonate` security claim (see "Configuring user's permissions").
 * On successful impersonation, the server response will contain the standard authentication cookie,
   containing the impersonation information.
   The client browser will automatically use the cookie for following requests.
@@ -58,7 +58,7 @@ Activates impersonation for the currently logged in user to act as the given `Im
 The user stays logged in, but the impersonation of deactivated.
 
 As an alternative to calling this method, the impersonation will be automatically deactivated if a user logs out
-(see [authentication service](https://github.com/Rhetos/Rhetos/tree/master/AspNetFormsAuth) `Logout` method),
+(see [authentication service](https://github.com/Rhetos/AspNetFormsAuth) `Logout` method),
 or the login session expires.
 
 * No request data is needed. Response is empty.
