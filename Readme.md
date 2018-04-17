@@ -1,28 +1,26 @@
-AspNetFormsAuthImpersonation
-============================
+# AspNetFormsAuthImpersonation
 
 AspNetFormsAuthImpersonation is a package (a plugin module) for [Rhetos development platform](https://github.com/Rhetos/Rhetos).
 It extends [AspNetFormsAuth](https://github.com/Rhetos/Rhetos/tree/master/AspNetFormsAuth) package with **user impersonation**,
 allowing a user to log in as another user.
-The impersonation information is perssited only in the standard authentication cookie (already used by AspNetFormsAuth).
+The impersonation information is persisted only in the standard authentication cookie (already used by AspNetFormsAuth).
 
 Contents:
 
 * [Installation and configuration](#installation-and-configuration)
-    * [Prerequisites](#prerequisites)
-    * [Configuring user's permissions](#configuring-user-s-permissions)
+    * [Installation](#installation)
+    * [Configuring user's permissions](#configuring-users-permissions)
+    * [Simple administration GUI](#simple-administration-gui)
 * [Impersonation web service API](#impersonation-web-service-api)
     * [Impersonate](#impersonate)
     * [StopImpersonating](#stopimpersonating)
 * [Implementing web GUI](#implementing-web-gui)
-* [Building binaries from source](#building-binaries-from-source)
-
 
 ## Installation and configuration
 
-### Prerequisites
+### Installation
 
-* *CommonConcepts* and *AspNetFormsAuth* packages must be deployed along with this package.
+Add "Rhetos.AspNetFormsAuthImpersonation" to the package list in the server's *RhetosPackages.config* file.
 
 ### Configuring user's permissions
 
@@ -33,7 +31,7 @@ The following security claims are used in the impersonation web service:
 
 * `Impersonate` - A user with this claim is allowed to impersonate another user (execute [`Impersonate`](#impersonate) web method).
 * `IncreasePermissions` - A user with this claim is allowed to **impersonate another user that has more permissions** than the original user.
-  This claim is **not assigned** by defeault to the admin user. 
+  This claim is **not assigned** by default to the admin user.
 
 ### Simple administration GUI
 
@@ -57,14 +55,13 @@ Activates impersonation for the currently logged in user to act as the given `Im
 
 ### StopImpersonating
 
-The user stays logged in, but the impersionation of deactivated.
+The user stays logged in, but the impersonation of deactivated.
 
-As an alternative to calling this method, the impersionation will be automatically deactivated if a user logs out
+As an alternative to calling this method, the impersonation will be automatically deactivated if a user logs out
 (see [authentication service](https://github.com/Rhetos/Rhetos/tree/master/AspNetFormsAuth) `Logout` method),
 or the login session expires.
 
 * No request data is needed. Response is empty.
-
 
 ## Implementing web GUI
 
@@ -73,8 +70,9 @@ with Rhetos server may access the impersonation information and show it in the G
 
 To find out if the current user impersonates another, use the following code snippet:
 
-    (the project must reference **System.Web.dll**)
-    
+```C#
+    // (the project must reference **System.Web.dll**)
+
     /// <summary>
     /// Returns the impersonated user whose context (including security permissions) is in effect.
     /// Returns null if there is no impersonation.
@@ -91,3 +89,4 @@ To find out if the current user impersonates another, use the following code sni
         }
         return null;
     }
+```
