@@ -65,7 +65,7 @@ or the login session expires.
 
 ## Implementing web GUI
 
-Web application that [shares user authentication](https://github.com/Rhetos/Rhetos/tree/master/AspNetFormsAuth#sharing-the-authentication-across-web-applications)
+Web application that [shares user authentication](https://github.com/Rhetos/AspNetFormsAuth/blob/master/Readme.md#sharing-the-authentication-across-web-applications)
 with Rhetos server may access the impersonation information and show it in the GUI.
 
 To find out if the current user impersonates another, use the following code snippet:
