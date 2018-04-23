@@ -1,6 +1,6 @@
 # AspNetFormsAuthImpersonation
 
-AspNetFormsAuthImpersonation is a package (a plugin module) for [Rhetos development platform](https://github.com/Rhetos/Rhetos).
+AspNetFormsAuthImpersonation is a plugin package for [Rhetos development platform](https://github.com/Rhetos/Rhetos).
 It extends [AspNetFormsAuth](https://github.com/Rhetos/AspNetFormsAuth) package with **user impersonation**,
 allowing a user to log in as another user.
 The impersonation information is persisted only in the standard authentication cookie (already used by AspNetFormsAuth).
@@ -71,22 +71,22 @@ with Rhetos server may access the impersonation information and show it in the G
 To find out if the current user impersonates another, use the following code snippet:
 
 ```C#
-    // (the project must reference **System.Web.dll**)
+// (the project must reference **System.Web.dll**)
 
-    /// <summary>
-    /// Returns the impersonated user whose context (including security permissions) is in effect.
-    /// Returns null if there is no impersonation.
-    /// </summary>
-    public static string GetImpersonatedUser()
+/// <summary>
+/// Returns the impersonated user whose context (including security permissions) is in effect.
+/// Returns null if there is no impersonation.
+/// </summary>
+public static string GetImpersonatedUser()
+{
+    var formsIdentity = (System.Web.HttpContext.Current.User.Identity as System.Web.Security.FormsIdentity);
+    if (formsIdentity != null && formsIdentity.IsAuthenticated)
     {
-        var formsIdentity = (System.Web.HttpContext.Current.User.Identity as System.Web.Security.FormsIdentity);
-        if (formsIdentity != null && formsIdentity.IsAuthenticated)
-        {
-            string userData = formsIdentity.Ticket.UserData;
-            const string prefix = "Impersonating:";
-            if (!string.IsNullOrEmpty(userData) && userData.StartsWith(prefix))
-                return userData.Substring(prefix.Length);
-        }
-        return null;
+        string userData = formsIdentity.Ticket.UserData;
+        const string prefix = "Impersonating:";
+        if (!string.IsNullOrEmpty(userData) && userData.StartsWith(prefix))
+            return userData.Substring(prefix.Length);
     }
+    return null;
+}
 ```

@@ -6,7 +6,7 @@
     <authors>Omega software</authors>
     <owners>Omega software</owners>
     <projectUrl>https://github.com/rhetos/rhetos</projectUrl>
-    <description>AspNetFormsAuthImpersonation is a package (a plugin module) for Rhetos development platform.
+    <description>AspNetFormsAuthImpersonation is a plugin package for Rhetos development platform.
       It extends AspNetFormsAuth package with user impersonation, allowing a user to log in as another user.</description>
     <copyright>Copyright Omega software 2015</copyright>
     <tags>Rhetos plugin</tags>
