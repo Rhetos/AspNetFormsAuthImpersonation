@@ -40,7 +40,7 @@ namespace Rhetos.AspNetFormsAuthImpersonation
             _snippet = new Lazy<string>(() =>
                 {
                     string filePath = Path.Combine(Paths.ResourcesFolder, "AspNetFormsAuthImpersonation", "HomePageSnippet.html");
-                    return File.ReadAllText(filePath, Encoding.Default);
+                    return File.ReadAllText(filePath);
                 });
         }
 
