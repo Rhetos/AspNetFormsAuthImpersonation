@@ -213,7 +213,7 @@ namespace Rhetos.AspNetFormsAuthImpersonation
 
         private void UpdateAuthTicketToStopImpersonating(HttpCookie authenticationCookie)
         {
-            if (authenticationCookie.Value == null)
+            if (authenticationCookie?.Value == null)
                 return; // Ignore if not logged-in.
 
             var authenticationTicket = FormsAuthentication.Decrypt(authenticationCookie.Value);

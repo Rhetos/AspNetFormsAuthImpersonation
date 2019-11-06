@@ -17,14 +17,10 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Rhetos.AspNetFormsAuth;
 using Rhetos.Security;
 using Rhetos.Utilities;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.Composition;
-using System.Linq;
-using System.Text;
 using System.Web;
 using System.Web.Security;
 
@@ -35,13 +31,7 @@ namespace Rhetos.AspNetFormsAuthImpersonation
     {
         #region IUserInfo implementation
 
-        public bool IsUserRecognized
-        {
-            get
-            {
-                return _isUserRecognized.Value;
-            }
-        }
+        public bool IsUserRecognized => _isUserRecognized.Value;
 
         public string UserName
         {
@@ -52,21 +42,13 @@ namespace Rhetos.AspNetFormsAuthImpersonation
             }
         }
 
-        public string Workstation
-        {
-            get
-            {
-                CheckIfUserRecognized();
-                return _workstation.Value;
-            }
-        }
+        public string Workstation => _workstation.Value;
 
         public string Report()
         {
-            CheckIfUserRecognized();
             return _impersonatedUser.Value != null
-                ? (_actualUser.Value + " as " + _impersonatedUser.Value + "," + _workstation.Value)
-                : _actualUser.Value + "," + _workstation.Value;
+                ? (ReportActualUserNameOrAnonymous() + " as " + _impersonatedUser.Value + "," + _workstation.Value)
+                : ReportActualUserNameOrAnonymous() + "," + _workstation.Value;
         }
 
         #endregion
@@ -84,20 +66,20 @@ namespace Rhetos.AspNetFormsAuthImpersonation
             }
         }
 
-        private Lazy<bool> _isUserRecognized;
+        private readonly Lazy<bool> _isUserRecognized;
 
-        private Lazy<string> _workstation;
+        private readonly Lazy<string> _workstation;
 
         /// <summary>
         /// The actual (not impersonated) user that is logged in.
         /// </summary>
-        private Lazy<string> _actualUser;
+        private readonly Lazy<string> _actualUser;
 
         /// <summary>
         /// The impersonated user whose context (including security permissions) is in effect.
         /// Null if there is no impersonation.
         /// </summary>
-        private Lazy<string> _impersonatedUser;
+        private readonly Lazy<string> _impersonatedUser;
 
         public AspNetImpersonationUserInfo(IWindowsSecurity windowsSecurity)
         {
@@ -134,5 +116,7 @@ namespace Rhetos.AspNetFormsAuthImpersonation
             if (!IsUserRecognized)
                 throw new ClientException("User is not authenticated.");
         }
+
+        private string ReportActualUserNameOrAnonymous() => IsUserRecognized ? _actualUser.Value : "<anonymous>";
     }
 }
